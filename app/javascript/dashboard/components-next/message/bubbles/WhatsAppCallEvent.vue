@@ -11,8 +11,7 @@ const labels = {
   time: 'Time',
   callId: 'Call ID',
   status: 'Status',
-  limitation:
-    'This WhatsApp Web/Evolution connection can log calls but cannot answer them in Chatwoot.',
+  duration: 'Duration',
 };
 
 const details = computed(() => {
@@ -60,6 +59,20 @@ const callId = computed(
     contentAttributes.value?.whatsapp_call_id || details.value['call id'] || ''
 );
 
+const duration = computed(
+  () => contentAttributes.value?.whatsapp_call_duration || details.value.duration || ''
+);
+
+const direction = computed(() =>
+  String(
+    contentAttributes.value?.whatsapp_call_direction ||
+      details.value.direction ||
+      'incoming'
+  ).toLowerCase()
+);
+
+const isOutgoing = computed(() => direction.value === 'outgoing');
+
 const normalizedStatus = computed(() =>
   String(status.value || 'unknown')
     .toLowerCase()
@@ -67,26 +80,30 @@ const normalizedStatus = computed(() =>
 );
 
 const isMissed = computed(() =>
-  ['missed', 'no-answer', 'rejected', 'terminated', 'ended'].includes(
+  ['missed', 'no-answer', 'not-answered', 'rejected', 'failed', 'connection-lost'].includes(
     normalizedStatus.value
   )
 );
 
 const title = computed(() => {
-  if (isMissed.value) return 'Missed WhatsApp call';
-  if (normalizedStatus.value === 'incoming') return 'Incoming WhatsApp call';
-  return 'WhatsApp call';
+  if (isMissed.value) {
+    return isOutgoing.value ? 'Unanswered WhatsApp call' : 'Missed WhatsApp call';
+  }
+  return isOutgoing.value ? 'Outgoing WhatsApp call' : 'Incoming WhatsApp call';
 });
 
 const subtext = computed(() => {
   const type = callType.value === 'video' ? 'Video' : 'Voice';
-  if (phone.value) return `${type} call from ${phone.value}`;
-  return `${type} call`;
+  if (!phone.value) return `${type} call`;
+  return isOutgoing.value
+    ? `${type} call to ${phone.value}`
+    : `${type} call from ${phone.value}`;
 });
 
-const iconName = computed(() =>
-  isMissed.value ? 'i-ph-phone-x-bold' : 'i-ph-phone-incoming-bold'
-);
+const iconName = computed(() => {
+  if (isMissed.value) return 'i-ph-phone-x-bold';
+  return isOutgoing.value ? 'i-ph-phone-outgoing-bold' : 'i-ph-phone-incoming-bold';
+});
 
 const iconClass = computed(() =>
   isMissed.value ? 'bg-n-ruby-3 text-n-ruby-10' : 'bg-n-teal-3 text-n-teal-11'
@@ -129,10 +146,10 @@ const iconClass = computed(() =>
           <span>{{ labels.status }}</span>
           <span class="text-n-slate-12 text-right">{{ status }}</span>
         </div>
-      </div>
-
-      <div class="text-xs leading-5 text-n-slate-11">
-        {{ labels.limitation }}
+        <div v-if="duration" class="flex justify-between gap-3">
+          <span>{{ labels.duration }}</span>
+          <span class="text-n-slate-12 text-right">{{ duration }}</span>
+        </div>
       </div>
     </div>
   </BaseBubble>

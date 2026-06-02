@@ -339,6 +339,13 @@ Rails.application.routes.draw do
 
           resources :webhooks, only: [:index, :create, :update, :destroy]
           namespace :integrations do
+            resource :wavoip, controller: 'wavoip', only: [] do
+              collection do
+                get :tokens
+                post :call_event
+                post :resolve
+              end
+            end
             resources :apps, only: [:index, :show]
             resources :hooks, only: [:show, :create, :update, :destroy] do
               member do

@@ -20,6 +20,11 @@ const FloatingCallWidget = defineAsyncComponent(
   () => import('dashboard/components-next/call/FloatingCallWidget.vue')
 );
 
+// WAVoIP softphone for answering incoming WhatsApp calls (QR/Evolution numbers).
+const WavoipWebphone = defineAsyncComponent(
+  () => import('dashboard/components-next/call/WavoipWebphone.vue')
+);
+
 import CopilotLauncher from 'dashboard/components-next/copilot/CopilotLauncher.vue';
 import CopilotContainer from 'dashboard/components/copilot/CopilotContainer.vue';
 
@@ -36,6 +41,7 @@ export default {
     CopilotLauncher,
     CopilotContainer,
     FloatingCallWidget,
+    WavoipWebphone,
     MobileSidebarLauncher,
   },
   setup() {
@@ -163,6 +169,7 @@ export default {
         />
         <CopilotContainer />
         <FloatingCallWidget v-if="hasActiveCall || hasIncomingCall" />
+        <WavoipWebphone />
       </template>
       <AddAccountModal
         :show="showCreateAccountModal"
