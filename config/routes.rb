@@ -344,6 +344,7 @@ Rails.application.routes.draw do
                 get :tokens
                 post :call_event
                 post :resolve
+                post :contact_profile
               end
             end
             resources :apps, only: [:index, :show]

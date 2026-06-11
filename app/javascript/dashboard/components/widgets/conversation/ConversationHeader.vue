@@ -10,6 +10,7 @@ import Avatar from 'next/avatar/Avatar.vue';
 import SLACardLabel from './components/SLACardLabel.vue';
 import ConversationCallButton from './ConversationCallButton.vue';
 import ConversationWavoipCallButton from './ConversationWavoipCallButton.vue';
+import ConversationProfileButton from './ConversationProfileButton.vue';
 import wootConstants from 'dashboard/constants/globals';
 import { conversationListPageURL } from 'dashboard/helper/URLHelper';
 import { snoozedReopenTime } from 'dashboard/helper/snoozeHelpers';
@@ -176,6 +177,7 @@ const copyConversationId = async () => {
       />
       <ConversationCallButton :inbox="inbox" :chat="currentChat" />
       <ConversationWavoipCallButton :inbox="inbox" :chat="currentChat" />
+      <ConversationProfileButton :chat="currentChat" />
       <MoreActions :conversation-id="currentChat.id" />
     </div>
   </div>

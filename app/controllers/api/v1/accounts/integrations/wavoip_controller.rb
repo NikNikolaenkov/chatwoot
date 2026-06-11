@@ -80,4 +80,28 @@ class Api::V1::Accounts::Integrations::WavoipController < Api::V1::Accounts::Bas
     Rails.logger.error("[wavoip] resolve bridge failed: #{e.message}")
     render json: { found: false }, status: :bad_gateway
   end
+
+  # Triggers an on-demand DeepSeek CRM-profile ("анкета") refresh for a conversation.
+  # Proxies to the Business Control backend with the shared key (server-side); the
+  # backend extracts the profile from the chat and writes the contact custom attributes.
+  def contact_profile
+    bridge_url = ENV.fetch('WAVOIP_BRIDGE_URL', '')
+    bridge_key = ENV.fetch('WAVOIP_BRIDGE_KEY', '')
+    return head(:service_unavailable) if bridge_url.blank? || bridge_key.blank?
+
+    url = bridge_url.sub(%r{/wavoip/tokens\z}, '/chatwoot/contact-profile/refresh')
+    response = HTTParty.post(
+      url,
+      headers: {
+        'x-wavoip-bridge-key' => bridge_key,
+        'Content-Type' => 'application/json'
+      },
+      body: { conversationId: params[:conversation_id] }.to_json,
+      timeout: 30
+    )
+    render json: (response.parsed_response.presence || {}), status: response.code
+  rescue StandardError => e
+    Rails.logger.error("[wavoip] contact_profile bridge failed: #{e.message}")
+    head :bad_gateway
+  end
 end
