@@ -17,6 +17,7 @@ import ComposeConversation from 'dashboard/components-next/NewConversation/Compo
 import NextButton from 'dashboard/components-next/button/Button.vue';
 import VoiceCallButton from 'dashboard/components-next/Contacts/VoiceCallButton.vue';
 import InlineInput from 'dashboard/components-next/inline-input/InlineInput.vue';
+import CreateWhatsAppGroup from './CreateWhatsAppGroup.vue';
 
 export default {
   components: {
@@ -30,6 +31,7 @@ export default {
     ContactDeleteModal,
     VoiceCallButton,
     InlineInput,
+    CreateWhatsAppGroup,
   },
   props: {
     contact: {
@@ -51,6 +53,7 @@ export default {
   data() {
     return {
       showEditModal: false,
+      showCreateGroupPanel: false,
       isEditingName: false,
       editName: '',
     };
@@ -95,6 +98,12 @@ export default {
         telegram,
       };
     },
+    isGroup() {
+      return this.contact.identifier?.startsWith('group:') ?? false;
+    },
+    initialPhoneForGroup() {
+      return this.contact.phone_number?.replace(/\D/g, '') || '';
+    },
   },
   watch: {
     'contact.id': {
@@ -108,6 +117,9 @@ export default {
     dynamicTime,
     toggleEditModal() {
       this.showEditModal = !this.showEditModal;
+    },
+    toggleCreateGroupPanel() {
+      this.showCreateGroupPanel = !this.showCreateGroupPanel;
     },
     findCountryFlag(countryCode, cityAndCountry) {
       try {
@@ -334,6 +346,15 @@ export default {
           :tooltip-label="$t('CONTACT_PANEL.CALL')"
         />
         <NextButton
+          v-if="!isGroup"
+          v-tooltip.top-end="'Нова WA-група'"
+          icon="i-ph-users-three"
+          slate
+          faded
+          sm
+          @click="toggleCreateGroupPanel"
+        />
+        <NextButton
           v-tooltip.top-end="$t('EDIT_CONTACT.BUTTON_LABEL')"
           icon="i-ph-pencil-simple"
           slate
@@ -375,6 +396,11 @@ export default {
         :show="showEditModal"
         :contact="contact"
         @cancel="toggleEditModal"
+      />
+      <CreateWhatsAppGroup
+        :show="showCreateGroupPanel"
+        :initial-phone="initialPhoneForGroup"
+        @cancel="toggleCreateGroupPanel"
       />
     </div>
   </div>

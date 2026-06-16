@@ -20,7 +20,7 @@ import ChannelLeaf from './ChannelLeaf.vue';
 import ChannelIcon from 'next/icon/ChannelIcon.vue';
 import SidebarAccountSwitcher from './SidebarAccountSwitcher.vue';
 import Logo from 'next/icon/Logo.vue';
-import ComposeConversation from 'dashboard/components-next/NewConversation/ComposeConversation.vue';
+import NewWhatsAppQuickStart from 'dashboard/components-next/NewConversation/NewWhatsAppQuickStart.vue';
 
 const props = defineProps({
   isMobileSidebarOpen: {
@@ -868,22 +868,21 @@ const menuItems = computed(() => {
         >
           <span class="i-lucide-search size-4 text-n-slate-11" />
         </RouterLink>
-        <ComposeConversation align="start">
-          <template #trigger="{ isOpen }">
+        <NewWhatsAppQuickStart>
+          <template #trigger>
             <Button
               icon="i-lucide-pen-line"
               color="slate"
               size="sm"
               class="dark:hover:!bg-n-slate-9/30"
-              :class="[
+              :class="
                 isEffectivelyCollapsed
                   ? '!size-8 !outline-n-weak !text-n-slate-11'
-                  : '!h-7 !outline-n-weak !text-n-slate-11',
-                { '!bg-n-alpha-2 dark:!bg-n-slate-9/30': isOpen },
-              ]"
+                  : '!h-7 !outline-n-weak !text-n-slate-11'
+              "
             />
           </template>
-        </ComposeConversation>
+        </NewWhatsAppQuickStart>
       </div>
     </section>
     <nav
