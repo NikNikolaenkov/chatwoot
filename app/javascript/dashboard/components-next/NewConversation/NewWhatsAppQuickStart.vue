@@ -227,7 +227,7 @@ useKeyboardEvents({
                   <span class="i-ph-users-three mr-1.5 align-middle" />{{ $t('WA_QUICK_START.TAB_GROUP') }}
                 </button>
               </div>
-              <Button icon="i-lucide-x" slate ghost sm @click="close" />
+              <Button icon="i-lucide-x" color="slate" variant="ghost" size="sm" @click="close" />
             </div>
 
             <!-- ── PERSONAL MODE ─────────────────────────────────────── -->
@@ -239,13 +239,13 @@ useKeyboardEvents({
               <!-- Phone -->
               <div class="flex flex-col gap-1">
                 <label class="text-xs font-medium text-n-slate-11">{{ $t('WA_QUICK_START.PHONE_LABEL') }} *</label>
-                <div class="relative">
-                  <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-n-slate-9 select-none">+</span>
+                <div class="flex items-center rounded-lg border border-n-weak bg-n-surface-1 overflow-hidden focus-within:ring-2 focus-within:ring-n-brand">
+                  <span class="pl-3 pr-1 text-sm text-n-slate-9 select-none shrink-0">+</span>
                   <input
                     v-model="phone"
                     type="tel"
                     :placeholder="$t('WA_QUICK_START.PHONE_PLACEHOLDER')"
-                    class="w-full pl-6 pr-3 py-2 rounded-lg border border-n-weak bg-n-surface-1 text-sm text-n-slate-12 placeholder:text-n-slate-9 focus:outline-none focus:ring-2 focus:ring-n-brand"
+                    class="flex-1 pr-3 py-2 text-sm text-n-slate-12 placeholder:text-n-slate-9 focus:outline-none bg-transparent"
                     @keyup.enter="onSubmit"
                   />
                 </div>
@@ -324,17 +324,17 @@ useKeyboardEvents({
                   <span class="text-n-slate-9 font-normal">({{ participants.length }})</span>
                 </label>
                 <div class="flex gap-2">
-                  <div class="relative flex-1">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-n-slate-9 select-none">+</span>
+                  <div class="flex items-center flex-1 rounded-lg border border-n-weak bg-n-surface-1 overflow-hidden focus-within:ring-2 focus-within:ring-n-brand">
+                    <span class="pl-3 pr-1 text-sm text-n-slate-9 select-none shrink-0">+</span>
                     <input
                       v-model="participantInput"
                       type="tel"
                       :placeholder="$t('WA_QUICK_START.PARTICIPANTS_PLACEHOLDER')"
-                      class="w-full pl-6 pr-3 py-2 rounded-lg border border-n-weak bg-n-surface-1 text-sm text-n-slate-12 placeholder:text-n-slate-9 focus:outline-none focus:ring-2 focus:ring-n-brand"
+                      class="flex-1 pr-3 py-2 text-sm text-n-slate-12 placeholder:text-n-slate-9 focus:outline-none bg-transparent"
                       @keydown="handleParticipantKey"
                     />
                   </div>
-                  <Button sm slate faded :label="$t('WA_QUICK_START.ADD_BUTTON')" @click="addParticipant" />
+                  <Button size="sm" color="slate" variant="faded" :label="$t('WA_QUICK_START.ADD_BUTTON')" @click="addParticipant" />
                 </div>
                 <p class="text-xs text-n-slate-9">{{ $t('WA_QUICK_START.PARTICIPANTS_HINT') }}</p>
 
@@ -362,9 +362,9 @@ useKeyboardEvents({
 
             <!-- Footer -->
             <div class="flex items-center justify-end gap-2 px-4 py-3 border-t border-n-weak">
-              <Button faded slate sm :label="$t('WA_QUICK_START.CANCEL_BUTTON')" @click="close" />
+              <Button variant="faded" color="slate" size="sm" :label="$t('WA_QUICK_START.CANCEL_BUTTON')" @click="close" />
               <Button
-                sm
+                size="sm"
                 :label="mode === 'personal' ? $t('WA_QUICK_START.OPEN_CHAT_BUTTON') : $t('WA_QUICK_START.CREATE_GROUP_BUTTON')"
                 :icon="mode === 'personal' ? 'i-ph-chat-circle-dots' : 'i-ph-users-three'"
                 :is-loading="isLoading"

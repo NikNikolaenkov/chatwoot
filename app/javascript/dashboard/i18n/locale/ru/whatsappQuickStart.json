@@ -1,0 +1,30 @@
+{
+  "WA_QUICK_START": {
+    "TAB_PERSONAL": "Личное",
+    "TAB_GROUP": "Группа",
+    "PERSONAL_HINT": "Напишите по номеру телефона — контакт создастся автоматически.",
+    "GROUP_HINT": "Введите номера участников — контакты и группа создадутся автоматически.",
+    "PHONE_LABEL": "Номер телефона",
+    "PHONE_PLACEHOLDER": "380501234567",
+    "NAME_LABEL": "Имя",
+    "NAME_OPTIONAL": "(необязательно)",
+    "NAME_PLACEHOLDER": "Иван Иванов",
+    "INBOX_LABEL": "WhatsApp аккаунт",
+    "INBOX_PLACEHOLDER": "Выберите инбокс…",
+    "NO_INBOXES": "Нет подключённых WhatsApp инбоксов",
+    "GROUP_NAME_LABEL": "Название группы",
+    "GROUP_NAME_PLACEHOLDER": "Менеджеры проекта",
+    "PARTICIPANTS_LABEL": "Участники",
+    "PARTICIPANTS_PLACEHOLDER": "380501234567",
+    "PARTICIPANTS_HINT": "Enter или запятая — добавить номер",
+    "ADD_BUTTON": "Добавить",
+    "CANCEL_BUTTON": "Отмена",
+    "OPEN_CHAT_BUTTON": "Открыть диалог",
+    "CREATE_GROUP_BUTTON": "Создать группу",
+    "ERROR_GENERIC": "Ошибка — попробуйте ещё раз",
+    "ERROR_AUTH": "Ошибка авторизации — обновите страницу",
+    "ERROR_NETWORK": "Ошибка сети",
+    "GROUP_CREATED": "Группа «{name}» создана",
+    "GROUP_CREATED_PENDING": "Группа «{name}» создана — диалог появится автоматически"
+  }
+}
