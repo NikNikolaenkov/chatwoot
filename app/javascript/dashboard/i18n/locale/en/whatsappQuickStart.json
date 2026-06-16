@@ -1,0 +1,30 @@
+{
+  "WA_QUICK_START": {
+    "TAB_PERSONAL": "Personal",
+    "TAB_GROUP": "Group",
+    "PERSONAL_HINT": "Enter a phone number — the contact will be created automatically.",
+    "GROUP_HINT": "Enter participant numbers — contacts and the group will be created automatically.",
+    "PHONE_LABEL": "Phone number",
+    "PHONE_PLACEHOLDER": "380501234567",
+    "NAME_LABEL": "Name",
+    "NAME_OPTIONAL": "(optional)",
+    "NAME_PLACEHOLDER": "John Doe",
+    "INBOX_LABEL": "WhatsApp account",
+    "INBOX_PLACEHOLDER": "Select inbox…",
+    "NO_INBOXES": "No WhatsApp inboxes connected",
+    "GROUP_NAME_LABEL": "Group name",
+    "GROUP_NAME_PLACEHOLDER": "Project managers",
+    "PARTICIPANTS_LABEL": "Participants",
+    "PARTICIPANTS_PLACEHOLDER": "380501234567",
+    "PARTICIPANTS_HINT": "Press Enter or comma to add a number",
+    "ADD_BUTTON": "Add",
+    "CANCEL_BUTTON": "Cancel",
+    "OPEN_CHAT_BUTTON": "Open chat",
+    "CREATE_GROUP_BUTTON": "Create group",
+    "ERROR_GENERIC": "Something went wrong — please try again",
+    "ERROR_AUTH": "Auth error — please refresh the page",
+    "ERROR_NETWORK": "Network error",
+    "GROUP_CREATED": "Group \"{name}\" created",
+    "GROUP_CREATED_PENDING": "Group \"{name}\" created — conversation will appear automatically"
+  }
+}

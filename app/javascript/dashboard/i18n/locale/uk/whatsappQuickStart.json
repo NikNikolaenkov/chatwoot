@@ -1,0 +1,30 @@
+{
+  "WA_QUICK_START": {
+    "TAB_PERSONAL": "Особисте",
+    "TAB_GROUP": "Група",
+    "PERSONAL_HINT": "Напишіть по номеру телефону — контакт створиться автоматично.",
+    "GROUP_HINT": "Введіть номери учасників — контакти та група створяться автоматично.",
+    "PHONE_LABEL": "Номер телефону",
+    "PHONE_PLACEHOLDER": "380501234567",
+    "NAME_LABEL": "Ім'я",
+    "NAME_OPTIONAL": "(необов'язково)",
+    "NAME_PLACEHOLDER": "Іван Іванов",
+    "INBOX_LABEL": "WhatsApp акаунт",
+    "INBOX_PLACEHOLDER": "Оберіть інбокс…",
+    "NO_INBOXES": "Немає підключених WhatsApp інбоксів",
+    "GROUP_NAME_LABEL": "Назва групи",
+    "GROUP_NAME_PLACEHOLDER": "Менеджери проєкту",
+    "PARTICIPANTS_LABEL": "Учасники",
+    "PARTICIPANTS_PLACEHOLDER": "380501234567",
+    "PARTICIPANTS_HINT": "Enter або кома — додати номер",
+    "ADD_BUTTON": "Додати",
+    "CANCEL_BUTTON": "Скасувати",
+    "OPEN_CHAT_BUTTON": "Відкрити діалог",
+    "CREATE_GROUP_BUTTON": "Створити групу",
+    "ERROR_GENERIC": "Помилка — спробуйте ще раз",
+    "ERROR_AUTH": "Помилка авторизації — оновіть сторінку",
+    "ERROR_NETWORK": "Мережева помилка",
+    "GROUP_CREATED": "Групу «{name}» створено",
+    "GROUP_CREATED_PENDING": "Групу «{name}» створено — конверзація з'явиться автоматично"
+  }
+}
