@@ -199,9 +199,12 @@ export const createContactSearcher = () => {
       } = await ContactAPI.search(trimmed, 1, 'name', '', { signal });
 
       const camelCasedPayload = camelcaseKeys(payload, { deep: true });
-      // Filter contacts that have either phone_number or email
+      // Filter contacts that have phone/email OR are WhatsApp group contacts
       const filteredPayload = camelCasedPayload?.filter(
-        contact => contact.phoneNumber || contact.email
+        contact =>
+          contact.phoneNumber ||
+          contact.email ||
+          contact.identifier?.startsWith('group:')
       );
       return filteredPayload || [];
     } catch (error) {

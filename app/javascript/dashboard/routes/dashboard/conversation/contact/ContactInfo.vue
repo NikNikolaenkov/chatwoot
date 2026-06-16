@@ -262,11 +262,29 @@ export default {
           />
           <ContactInfoRow
             v-if="contact.identifier"
-            :value="contact.identifier"
+            :value="contact.identifier.startsWith('group:') ? 'Груповий чат' : contact.identifier"
             icon="contact-identify"
-            emoji="🪪"
+            :emoji="contact.identifier.startsWith('group:') ? '👥' : '🪪'"
             :title="$t('CONTACT_PANEL.IDENTIFIER')"
           />
+          <div
+            v-if="contact.identifier && contact.identifier.startsWith('group:') && additionalAttributes.waMembers && additionalAttributes.waMembers.length"
+            class="flex flex-col w-full gap-1"
+          >
+            <p class="text-xs font-medium text-n-slate-10 mb-0.5">
+              Учасники групи ({{ additionalAttributes.waMembers.length }})
+            </p>
+            <div class="flex flex-col gap-0.5 max-h-40 overflow-y-auto">
+              <span
+                v-for="member in additionalAttributes.waMembers"
+                :key="member.phone"
+                class="text-xs text-n-slate-11 flex items-center gap-1"
+              >
+                <span :class="member.admin ? 'i-lucide-shield text-amber-500' : 'i-lucide-user'" class="text-xs flex-shrink-0" />
+                +{{ member.phone }}
+              </span>
+            </div>
+          </div>
           <ContactInfoRow
             :value="additionalAttributes.company_name"
             icon="building-bank"
